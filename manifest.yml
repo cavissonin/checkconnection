@@ -1,0 +1,13 @@
+---
+applications:
+- name: check-connectivity
+  memory: 1G
+  random-route: true
+  path: target/CheckConnection-0.0.1.jar
+  buildpack: https://github.com/cavissonin/java-buildpack.git
+  env:
+   CAV_TIER: ND_TIER
+   CAV_LOGS: OUTPUT_STREAM
+   CAV_NDC_HOST: 35.161.39.194
+   CAV_NDC_PORT: 7892
+
