@@ -3,7 +3,9 @@ package com.cavisson;
 import java.io.DataOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +31,9 @@ public class ConnectivityController
     Socket s;
     try
     {
-      s = new Socket(ndcHost, Integer.parseInt(ndcPort));
+      SocketAddress address = new InetSocketAddress(ndcHost, Integer.parseInt(ndcPort));
+      s = new Socket();
+      s.connect(address, 30*1000);
       DataOutputStream dout = new DataOutputStream(s.getOutputStream());
       dout.writeUTF("Hello Server");
       dout.flush();
@@ -65,7 +69,10 @@ public class ConnectivityController
     Socket s;
     try
     {
-      s = new Socket(ndcHost, Integer.parseInt(ndcPort));
+      //s = new Socket(ndcHost, Integer.parseInt(ndcPort));
+      SocketAddress address = new InetSocketAddress(ndcHost, Integer.parseInt(ndcPort));
+      s = new Socket();
+      s.connect(address, 30*1000);
       DataOutputStream dout = new DataOutputStream(s.getOutputStream());
       dout.writeUTF("Hello Server");
       dout.flush();
